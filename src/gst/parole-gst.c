@@ -2400,7 +2400,26 @@ void parole_gst_seek(ParoleGst *gst, gdouble seek) {
     g_warn_if_fail(gst_element_seek(gst->priv->playbin,
                         1.0,
                         GST_FORMAT_TIME,
-                        GST_SEEK_FLAG_KEY_UNIT | GST_SEEK_FLAG_FLUSH,
+                        // Only use the FLUSH flag and not the KEY_UNIT flag, because the KEY_UNIT flag
+                        // completely breaks seeking on files with few/sparse keyframes.
+                        //
+                        // The official GStreamer documentation acknowledges this broken behaviour, but still
+                        // recommends that the KEY_UNIT flag be used, insinuating that affected video files
+                        // are rare/exceptional enough that the performance benefits of the KEY_UNIT flag
+                        // outweigh this downside.
+                        // (See: https://gstreamer.freedesktop.org/documentation/additional/design/seeking.html?gi-language=c#gst_seek_flag_key_unit)
+                        //
+                        // I personally disagree with this assessment, specificially the claim that files
+                        // rendered un-seekable by this flag are the exception rather than the norm, due to me
+                        // having recently used ffmpeg to convert a moderate number (~30) of H.264 encoded mp4
+                        // files to AV1 encoded webm, only to discover that *every single one* of the produced 
+                        // webm files had broken seeking.
+                        //
+                        // My attempts to uncover the cause of, and any possible fixes for, this behaviour
+                        // eventually led me to the above documentation, and subsequently to the following
+                        // line of code, containing the offending flag.
+                        //GST_SEEK_FLAG_KEY_UNIT | GST_SEEK_FLAG_FLUSH,
+                        GST_SEEK_FLAG_FLUSH,
                         GST_SEEK_TYPE_SET, (int) seek * GST_SECOND,
                         GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE));
 
