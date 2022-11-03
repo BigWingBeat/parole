@@ -12,6 +12,10 @@ contains some useful examples.
 
 ----
 
+### This repository
+
+This is a fork of the official Parole repository, which is hosted on [Gitlab](https://gitlab.xfce.org/apps/parole). This fork includes certain opinionated changes, which can be viewed on the `fork-master` branch.
+
 ### Homepage
 
 [Parole documentation](https://docs.xfce.org/apps/parole/start)
