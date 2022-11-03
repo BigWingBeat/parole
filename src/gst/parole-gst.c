@@ -985,6 +985,7 @@ parole_gst_tag_list_get_cover_embedded(ParoleGst *gst, GstTagList *tag_list) {
 
 GdkPixbuf *
 parole_gst_tag_list_get_cover(ParoleGst *gst, GstTagList *tag_list) {
+    GdkPixbuf *external_pixbuf;
     GdkPixbuf *pixbuf;
     GdkPixbuf *scaled;
     gint height, width;
@@ -992,9 +993,14 @@ parole_gst_tag_list_get_cover(ParoleGst *gst, GstTagList *tag_list) {
 
     g_return_val_if_fail(tag_list != NULL, FALSE);
 
-    pixbuf = parole_gst_tag_list_get_cover_external(gst);
+    // Get the external pixbuf and then the embedded pixbuf, instead of only getting the external pixbuf in
+    // the following `if` block where (and if) it's needed, as swapping the order in which these functions are
+    // called causes getting the embedded pixbuf to break because ???
+    external_pixbuf = parole_gst_tag_list_get_cover_external(gst);
+    pixbuf = parole_gst_tag_list_get_cover_embedded(gst, tag_list);
+
     if (!pixbuf) {
-        pixbuf = parole_gst_tag_list_get_cover_embedded(gst, tag_list);
+        pixbuf = external_pixbuf;
         if (!pixbuf)
             return NULL;
     }
