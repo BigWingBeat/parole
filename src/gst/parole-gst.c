@@ -927,7 +927,8 @@ parole_gst_tag_list_get_cover_external(ParoleGst *gst) {
     pixbuf = gdk_pixbuf_new_from_file(cover_filename, &err);
     g_free(cover_filename);
     if (err) {
-        g_object_unref(pixbuf);
+        if (pixbuf)
+            g_object_unref(pixbuf);
         g_error_free(err);
         return NULL;
     }
