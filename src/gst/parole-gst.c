@@ -1126,6 +1126,7 @@ static void
 parole_gst_get_meta_data_file(ParoleGst *gst, GstTagList *tag) {
     gchar *str;
     GDate *date;
+    GstDateTime *datetime;
     guint integer;
     gboolean has_artwork;
 
@@ -1156,6 +1157,17 @@ parole_gst_get_meta_data_file(ParoleGst *gst, GstTagList *tag) {
                      NULL);
         g_date_free(date);
         g_free(str);
+    } else if (gst_tag_list_get_date_time(tag, GST_TAG_DATE_TIME, &datetime)) {
+        if (gst_date_time_has_year(datetime)) {
+            str = g_strdup_printf("%d", gst_date_time_get_year(datetime));
+            TRACE("year:%s", str);
+
+            g_object_set(G_OBJECT(gst->priv->stream),
+                        "year", str,
+                        NULL);
+            g_free(str);
+        }
+        gst_date_time_unref(datetime);
     }
 
     if (gst_tag_list_get_string_index(tag, GST_TAG_ALBUM, 0, &str)) {
