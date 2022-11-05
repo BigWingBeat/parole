@@ -1821,6 +1821,7 @@ parole_player_media_tag_cb(ParoleGst *gst, const ParoleStream *stream, ParolePla
             g_free(year);
 
         if ( album ) {
+            gtk_widget_show(player->priv->audiobox_album);
             gtk_label_set_markup(
                 GTK_LABEL(player->priv->audiobox_album),
                 g_markup_printf_escaped(
@@ -1829,11 +1830,7 @@ parole_player_media_tag_cb(ParoleGst *gst, const ParoleStream *stream, ParolePla
 
             g_free(album);
         } else {
-            gtk_label_set_markup(
-                GTK_LABEL(player->priv->audiobox_album),
-                g_markup_printf_escaped(
-                    "<big><span color='#BBBBBB'><i>%s</i></span> <span color='#F4F4F4'>%s</span></big>",
-                    _("on"), _("Unknown Album")));
+            gtk_widget_hide(player->priv->audiobox_album);
         }
 
         if ( artist ) {
