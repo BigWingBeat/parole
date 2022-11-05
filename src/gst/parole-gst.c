@@ -897,15 +897,15 @@ parole_gst_tag_list_get_cover_external(ParoleGst *gst) {
 
     while ( (listing = g_dir_read_name(file_dir)) ) {
         lower = g_utf8_strdown(listing, -1);
-        if ( g_strcmp0(lower, "cover.jpg") == 0 )
+        if ( g_str_has_prefix(lower, "cover") )
             cover = g_strdup(listing);
-        else if ( g_strcmp0(lower, "folder.jpg") == 0 )
+        else if ( g_str_has_prefix(lower, "folder") )
             cover = g_strdup(listing);
-        else if ( g_strcmp0(lower, "album.jpg") == 0 )
+        else if ( g_str_has_prefix(lower, "album") )
             cover = g_strdup(listing);
-        else if ( g_strcmp0(lower, "thumb.jpg") == 0 )
+        else if ( g_str_has_prefix(lower, "thumb") )
             cover = g_strdup(listing);
-        else if ( g_strcmp0(lower, "albumartsmall.jpg") == 0 )
+        else if ( g_str_has_prefix(lower, "albumartsmall") )
             cover = g_strdup(listing);
 
         g_free(lower);
