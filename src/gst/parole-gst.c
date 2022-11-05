@@ -866,13 +866,13 @@ parole_gst_buffer_to_pixbuf(GstBuffer *buffer) {
 
 GdkPixbuf *
 parole_gst_tag_list_get_cover_external(ParoleGst *gst) {
-    GdkPixbuf *pixbuf;
-    GError *err = NULL;
+    GdkPixbuf *pixbuf = NULL;
+    GError *pixbuf_error = NULL;
     gchar *uri;
     gchar *filename;
     gchar *directory;
     GDir  *file_dir;
-    GError *error = NULL;
+    GError *dir_error = NULL;
     const gchar *listing = NULL;
     gchar *lower = NULL;
     gchar *cover = NULL;
@@ -889,9 +889,9 @@ parole_gst_tag_list_get_cover_external(ParoleGst *gst) {
 
     directory = g_path_get_dirname(filename);
 
-    file_dir = g_dir_open(directory, 0, &error);
-    if (error) {
-        g_error_free(error);
+    file_dir = g_dir_open(directory, 0, &dir_error);
+    if (dir_error) {
+        g_error_free(dir_error);
         return NULL;
     }
 
@@ -913,25 +913,30 @@ parole_gst_tag_list_get_cover_external(ParoleGst *gst) {
         if (cover) {
             cover_filename = g_build_filename(directory, cover, NULL);
             g_free(cover);
-            break;
+            cover = NULL;
+
+            if (cover_filename) {
+                pixbuf = gdk_pixbuf_new_from_file(cover_filename, &pixbuf_error);
+                g_free(cover_filename);
+                if (pixbuf_error) {
+                    if (pixbuf) {
+                        g_object_unref(pixbuf);
+                        pixbuf = NULL;
+                    }
+                    g_error_free(pixbuf_error);
+                    pixbuf_error = NULL;
+                } else {
+                    break;
+                }
+            }
         }
     }
+
     g_free(uri);
     g_free(filename);
     g_free(directory);
     g_dir_close(file_dir);
 
-    if (!cover_filename)
-        return NULL;
-
-    pixbuf = gdk_pixbuf_new_from_file(cover_filename, &err);
-    g_free(cover_filename);
-    if (err) {
-        if (pixbuf)
-            g_object_unref(pixbuf);
-        g_error_free(err);
-        return NULL;
-    }
     return pixbuf;
 }
 
