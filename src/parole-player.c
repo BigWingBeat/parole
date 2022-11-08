@@ -1813,7 +1813,7 @@ parole_player_media_tag_cb(ParoleGst *gst, const ParoleStream *stream, ParolePla
             gtk_label_set_markup(
                 GTK_LABEL(player->priv->audiobox_album),
                 g_markup_printf_escaped(
-                    "<big><span color='#BBBBBB'><i>%s</i></span> <span color='#F4F4F4'>%s</span> <span color='#BBBBBB'>(%s)</span></big>",
+                    "<big><span color='#BBBBBB'><i>%s</i></span> <span color='#F4F4F4'>%s</span> <span color='#BBBBBB'><i>(%s)</i></span></big>",
                     _("on"), album, track_str));
 
             g_free(album);
