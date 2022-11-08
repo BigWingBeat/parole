@@ -1196,20 +1196,16 @@ parole_gst_get_meta_data_file(ParoleGst *gst, GstTagList *tag) {
 
     if (gst_tag_list_get_uint(tag, GST_TAG_TRACK_NUMBER, &integer)) {
         TRACE("track:%i", integer);
-        if (integer < 100) {
-            g_object_set(G_OBJECT(gst->priv->stream),
-                          "track", integer,
-                          NULL);
-        }
+        g_object_set(G_OBJECT(gst->priv->stream),
+                        "track", integer,
+                        NULL);
     }
 
     if (gst_tag_list_get_uint(tag, GST_TAG_TRACK_COUNT, &integer)) {
         TRACE("num-tracks:%i", integer);
-        if (integer < 100) {
-            g_object_set(G_OBJECT(gst->priv->stream),
-                          "num-tracks", integer,
-                          NULL);
-        }
+        g_object_set(G_OBJECT(gst->priv->stream),
+                        "num-tracks", integer,
+                        NULL);
     }
 
     if (gst_tag_list_get_uint(tag, GST_TAG_BITRATE, &integer)) {

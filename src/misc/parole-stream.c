@@ -658,7 +658,7 @@ parole_stream_class_init(ParoleStreamClass *klass) {
                                     g_param_spec_uint("num-tracks",
                                     "Num tracks",
                                     "Number of tracks in the audio disc",
-                                    1, 99,
+                                    1, G_MAXUINT,
                                     1,
                                     G_PARAM_READWRITE));
 
@@ -676,7 +676,7 @@ parole_stream_class_init(ParoleStreamClass *klass) {
                                     g_param_spec_uint("track",
                                     "Track",
                                     "Track",
-                                    0, 99,
+                                    0, G_MAXUINT,
                                     1,
                                     G_PARAM_READWRITE));
     /**
