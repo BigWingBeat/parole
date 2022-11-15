@@ -704,12 +704,12 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="audio_album">
+                              <object class="GtkLabel" id="audio_artist">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
-                                <property name="label" translatable="yes">&lt;big&gt;&lt;span color='#BBBBBB'&gt;&lt;i&gt;on&lt;/i&gt;&lt;/span&gt; &lt;span color='#F4F4F4'&gt;Unknown Album&lt;/span&gt;&lt;/big&gt;</property>
+                                <property name="label" translatable="yes">&lt;big&gt;&lt;span color='#BBBBBB'&gt;&lt;i&gt;by&lt;/i&gt;&lt;/span&gt; &lt;span color='#F4F4F4'&gt;Unknown Artist&lt;/span&gt;&lt;/big&gt;</property>
                                 <property name="use_markup">True</property>
                                 <property name="ellipsize">end</property>
                               </object>
@@ -720,12 +720,12 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="audio_artist">
+                              <object class="GtkLabel" id="audio_album">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="valign">start</property>
-                                <property name="label" translatable="yes">&lt;big&gt;&lt;span color='#BBBBBB'&gt;&lt;i&gt;by&lt;/i&gt;&lt;/span&gt; &lt;span color='#F4F4F4'&gt;Unknown Artist&lt;/span&gt;&lt;/big&gt;</property>
+                                <property name="label" translatable="yes">&lt;big&gt;&lt;span color='#BBBBBB'&gt;&lt;i&gt;on&lt;/i&gt;&lt;/span&gt; &lt;span color='#F4F4F4'&gt;Unknown Album&lt;/span&gt;&lt;/big&gt;</property>
                                 <property name="use_markup">True</property>
                                 <property name="ellipsize">end</property>
                               </object>
