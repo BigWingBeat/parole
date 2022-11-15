@@ -685,6 +685,7 @@
                           <object class="GtkBox" id="audio_text">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="valign">center</property>
                             <property name="orientation">vertical</property>
                             <property name="spacing">6</property>
                             <child>
