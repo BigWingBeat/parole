@@ -1584,9 +1584,11 @@ parole_media_list_setup_view(ParoleMediaList *list) {
 
     gtk_tree_view_column_pack_start(list->priv->col, renderer, TRUE);
     gtk_tree_view_column_set_attributes(list->priv->col, renderer, "text", NAME_COL, NULL);
+    gtk_tree_view_column_set_sizing(list->priv->col, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 
     gtk_tree_view_column_pack_start(list->priv->disc_col, disc_renderer, TRUE);
     gtk_tree_view_column_set_attributes(list->priv->disc_col, disc_renderer, "text", NAME_COL, NULL);
+    gtk_tree_view_column_set_sizing(list->priv->disc_col, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 
     /* Make the name column the search target */
     gtk_tree_view_set_search_column(GTK_TREE_VIEW(list->priv->view), NAME_COL);
