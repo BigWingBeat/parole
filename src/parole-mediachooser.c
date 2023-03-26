@@ -101,11 +101,14 @@ media_chooser_folder_changed_cb(GtkWidget *widget, ParoleMediaChooser *chooser) 
 /* Add one or more files from the filechooser-widget to the playlist */
 static void
 parole_media_chooser_add(ParoleMediaChooser *chooser, GtkWidget *file_chooser) {
+    GFile *gfile;
+    GFile *gfile_parent;
     GSList *media_files = NULL;
     GSList *files;
     GtkFileFilter *filter;
     gboolean scan_recursive;
     gchar *file;
+    gchar *folder;
     guint    i;
     guint len;
 
@@ -120,6 +123,23 @@ parole_media_chooser_add(ParoleMediaChooser *chooser, GtkWidget *file_chooser) {
                   NULL);
 
     len = g_slist_length(files);
+
+    if (len > 0) {
+        file = g_slist_nth_data(files, 1);
+        gfile = g_file_new_for_commandline_arg(file);
+        gfile_parent = g_file_get_parent(gfile);
+        folder = g_file_get_path(gfile_parent);
+
+        if ( folder ) {
+            g_object_set(G_OBJECT(chooser->conf),
+                        "media-chooser-folder", folder,
+                        NULL);
+            g_free(folder);
+        }
+
+        g_object_unref(gfile);
+        g_object_unref(gfile_parent);
+    }
 
     for (i = 0; i < len; i++) {
         file = g_slist_nth_data(files, i);

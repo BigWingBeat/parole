@@ -1050,11 +1050,9 @@ parole_player_media_activated_cb(ParoleMediaList *list, GtkTreeRowReference *row
         if ( file ) {
             const gchar *sub = NULL;
             const gchar *uri;
-            const gchar *directory = NULL;
             gint dvd_chapter;
 
             uri = parole_file_get_uri(file);
-            directory = parole_file_get_directory(file);
 
             if (g_str_has_prefix(uri, "dvd")) {
                 parole_player_dvd_reset(player);
@@ -1085,12 +1083,6 @@ parole_player_media_activated_cb(ParoleMediaList *list, GtkTreeRowReference *row
 
             gtk_window_set_title(GTK_WINDOW(player->priv->window),
                                  parole_media_list_get_row_name(player->priv->list, player->priv->row));
-
-            if ( directory ) {
-                g_object_set(G_OBJECT(player->priv->conf),
-                    "media-chooser-folder", directory,
-                    NULL);
-            }
 
             g_object_unref(file);
         }
