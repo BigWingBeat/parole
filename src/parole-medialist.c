@@ -1584,19 +1584,13 @@ parole_media_list_setup_view(ParoleMediaList *list) {
 
     gtk_tree_view_column_pack_start(list->priv->col, renderer, TRUE);
     gtk_tree_view_column_set_attributes(list->priv->col, renderer, "text", NAME_COL, NULL);
-    g_object_set(renderer,
-                  "ellipsize", PANGO_ELLIPSIZE_END,
-                  NULL);
 
     gtk_tree_view_column_pack_start(list->priv->disc_col, disc_renderer, TRUE);
     gtk_tree_view_column_set_attributes(list->priv->disc_col, disc_renderer, "text", NAME_COL, NULL);
-    g_object_set(disc_renderer,
-                  "ellipsize", PANGO_ELLIPSIZE_END,
-                  NULL);
 
     /* Make the name column the search target */
-    gtk_tree_view_set_search_column(GTK_TREE_VIEW(list->priv->view), 1);
-    gtk_tree_view_set_search_column(GTK_TREE_VIEW(list->priv->disc_view), 1);
+    gtk_tree_view_set_search_column(GTK_TREE_VIEW(list->priv->view), NAME_COL);
+    gtk_tree_view_set_search_column(GTK_TREE_VIEW(list->priv->disc_view), NAME_COL);
 
     /**
      * Media length
@@ -1606,8 +1600,9 @@ parole_media_list_setup_view(ParoleMediaList *list) {
     disc_renderer = gtk_cell_renderer_text_new();
 
     gtk_tree_view_column_pack_start(list->priv->col, renderer, FALSE);
-    gtk_tree_view_column_pack_start(list->priv->disc_col, disc_renderer, FALSE);
     gtk_tree_view_column_set_attributes(list->priv->col, renderer, "text", LENGTH_COL, NULL);
+    
+    gtk_tree_view_column_pack_start(list->priv->disc_col, disc_renderer, FALSE);
     gtk_tree_view_column_set_attributes(list->priv->disc_col, disc_renderer, "text", LENGTH_COL, NULL);
 
     gtk_tree_view_append_column(GTK_TREE_VIEW(list->priv->view), list->priv->col);
