@@ -362,7 +362,7 @@ void parole_get_media_files(GtkFileFilter *filter, const gchar *path, gboolean r
             } else if ( g_file_test(path_internal, G_FILE_TEST_IS_REGULAR) ) {
                 file = parole_file_new(path_internal);
                 if (parole_file_filter (playlist_filter, file) &&
-                     parole_pl_parser_guess_format_from_extension(path) != PAROLE_PL_FORMAT_UNKNOWN) {
+                     parole_pl_parser_guess_format_from_extension(path_internal) != PAROLE_PL_FORMAT_UNKNOWN) {
                     playlist = parole_pl_parser_parse_from_file_by_extension(path_internal);
                     g_object_unref(file);
                     if (playlist) {
