@@ -369,15 +369,10 @@ parole_media_list_add(ParoleMediaList *list, ParoleFile *file, gboolean disc, gb
  *
  **/
 static void
-parole_media_list_files_open(ParoleMediaList *list, GSList *files, gboolean disc, gboolean emit) {
+parole_media_list_files_open(ParoleMediaList *list, GSList *files, gboolean disc, gboolean emit, gboolean replace) {
     ParoleFile *file;
-    gboolean replace;
     guint len;
     guint i;
-
-    g_object_get(G_OBJECT(list->priv->conf),
-                 "replace-playlist", &replace,
-                 NULL);
 
     len = g_slist_length(files);
     TRACE("Adding %i files", len);
@@ -399,21 +394,31 @@ void
 parole_media_list_add_cdda_tracks(ParoleMediaList *list, gint n_tracks) {
     GSList *files = NULL;
     ParoleFile *file;
+    gboolean replace;
     int i;
+
+    g_object_get(G_OBJECT(list->priv->conf),
+                 "replace-playlist", &replace,
+                 NULL);
 
     for (i = 0; i < n_tracks; i++) {
         file = parole_file_new_cdda_track(i+1, g_strdup_printf(_("Track %i"), i+1));
         files = g_slist_append(files, file);
     }
 
-    parole_media_list_files_open(list, files, FALSE, TRUE);
+    parole_media_list_files_open(list, files, FALSE, TRUE, replace);
 }
 
 void
 parole_media_list_add_dvd_chapters(ParoleMediaList *list, gint n_chapters) {
     GSList *files = NULL;
     ParoleFile *file;
+    gboolean replace;
     gint i;
+
+    g_object_get(G_OBJECT(list->priv->conf),
+                 "replace-playlist", &replace,
+                 NULL);
 
     for (i = 0; i < n_chapters; i++) {
         file = PAROLE_FILE(parole_file_new_dvd_chapter(i+1, g_strdup_printf(_("Chapter %i"), i+1)));
@@ -421,19 +426,31 @@ parole_media_list_add_dvd_chapters(ParoleMediaList *list, gint n_chapters) {
     }
 
     // parole_media_list_clear_list (list);
-    parole_media_list_files_open(list, files, TRUE, TRUE);
+    parole_media_list_files_open(list, files, TRUE, TRUE, replace);
 }
 
 /* Callback to determine whether opened files should start playing immediately */
 static void
-parole_media_list_files_opened_cb(ParoleMediaChooser *chooser, GSList *files, ParoleMediaList *list) {
+parole_media_list_files_opened_replace_cb(ParoleMediaChooser *chooser, GSList *files, ParoleMediaList *list) {
     gboolean play;
 
     g_object_get(G_OBJECT(list->priv->conf),
                   "play-opened-files", &play,
                   NULL);
 
-    parole_media_list_files_open(list, files, FALSE, play);
+    parole_media_list_files_open(list, files, FALSE, play, TRUE);
+}
+
+/* Callback to determine whether opened files should start playing immediately */
+static void
+parole_media_list_files_opened_append_cb(ParoleMediaChooser *chooser, GSList *files, ParoleMediaList *list) {
+    gboolean play;
+
+    g_object_get(G_OBJECT(list->priv->conf),
+                  "play-opened-files", &play,
+                  NULL);
+
+    parole_media_list_files_open(list, files, FALSE, play, FALSE);
 }
 
 void
@@ -461,15 +478,20 @@ parole_media_list_iso_opened_cb(ParoleMediaChooser *chooser, gchar *filename, Pa
 }
 
 static void
-parole_media_list_open_internal(ParoleMediaList *list) {
+parole_media_list_open_internal(ParoleMediaList *list, gboolean replace) {
     ParoleMediaChooser *chooser;
 
     TRACE("start");
 
     chooser = parole_media_chooser_open_local(gtk_widget_get_toplevel(GTK_WIDGET(list)));
 
-    g_signal_connect(G_OBJECT(chooser), "media_files_opened",
-                     G_CALLBACK(parole_media_list_files_opened_cb), list);
+    if ( replace ) {
+        g_signal_connect(G_OBJECT(chooser), "media_files_opened",
+                        G_CALLBACK(parole_media_list_files_opened_replace_cb), list);
+    } else {
+        g_signal_connect(G_OBJECT(chooser), "media_files_opened",
+                        G_CALLBACK(parole_media_list_files_opened_append_cb), list);
+    }
 
     g_signal_connect(G_OBJECT(chooser), "iso_opened",
                      G_CALLBACK(parole_media_list_iso_opened_cb), list);
@@ -578,7 +600,7 @@ gboolean parole_media_list_key_press(GtkWidget *widget, GdkEventKey *ev, ParoleM
 /* Callback for the add button */
 void
 parole_media_list_add_clicked_cb(GtkButton *button, ParoleMediaList *list) {
-    parole_media_list_open_internal(list);
+    parole_media_list_open_internal(list, FALSE);
 }
 
 /* Callback for the clear button */
@@ -1705,7 +1727,7 @@ void parole_media_list_load(ParoleMediaList *list) {
             fileslist = parole_pl_parser_parse_from_file_by_extension(playlist_file);
             g_free(playlist_file);
 
-            parole_media_list_files_open(list, fileslist, FALSE, play);
+            parole_media_list_files_open(list, fileslist, FALSE, play, TRUE);
             g_slist_free(fileslist);
         }
     }
@@ -1717,10 +1739,15 @@ parole_media_list_add_by_path(ParoleMediaList *list, const gchar *path, gboolean
     GtkFileFilter *filter;
     guint len;
     gboolean ret = FALSE;
+    gboolean replace;
     gchar *full_path;
 
     filter = parole_get_supported_media_filter();
     g_object_ref_sink(filter);
+
+    g_object_get(G_OBJECT(list->priv->conf),
+                 "replace-playlist", &replace,
+                 NULL);
 
     if (g_path_is_absolute(path)) {
         full_path = g_strdup(path);
@@ -1735,7 +1762,7 @@ parole_media_list_add_by_path(ParoleMediaList *list, const gchar *path, gboolean
 
     parole_get_media_files(filter, full_path, TRUE, &files_list);
 
-    parole_media_list_files_open(list, files_list, FALSE, emit);
+    parole_media_list_files_open(list, files_list, FALSE, emit, replace);
 
     len = g_slist_length(files_list);
     ret = len == 0 ? FALSE : TRUE;
@@ -2040,7 +2067,7 @@ guint parole_media_list_get_row_entry_order(ParoleMediaList *list, GtkTreeRowRef
 }
 
 void parole_media_list_open(ParoleMediaList *list) {
-    parole_media_list_open_internal(list);
+    parole_media_list_open_internal(list, TRUE);
 }
 
 void parole_media_list_open_location(ParoleMediaList *list) {
