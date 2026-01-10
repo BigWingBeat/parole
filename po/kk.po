@@ -86,7 +86,7 @@ msgstr "Жалпы"
 
 #: data/interfaces/parole-settings.ui:446
 msgid "Please restart Parole for this change to take effect."
-msgstr ""
+msgstr "Өзгерістер іске асуы үшін Parole бағдарламасын қайта іске қосыңыз."
 
 #: data/interfaces/parole-settings.ui:482
 msgid "<b>Video Output</b>"
@@ -138,7 +138,7 @@ msgstr "Ойнату тізімін сақтау"
 
 #: data/interfaces/parole-settings.ui:801
 msgid "<b>Playlist Preferences</b>"
-msgstr ""
+msgstr "<b>Ойнату тізімінің баптаулары</b>"
 
 #: data/interfaces/parole-settings.ui:814 data/interfaces/playlist.ui:43
 #: data/interfaces/shortcuts.ui:99 src/parole-medialist.c:790
@@ -160,7 +160,7 @@ msgstr "Кодталуы:"
 
 #: data/interfaces/parole-settings.ui:953
 msgid "<b>Subtitle Preferences</b>"
-msgstr ""
+msgstr "<b>Субтитр баптаулары</b>"
 
 #: data/interfaces/parole-settings.ui:966
 msgid "Subtitles"
@@ -236,7 +236,7 @@ msgstr "А_таулар мәзірі"
 
 #: data/interfaces/parole.ui:229
 msgid "_Subpicture Menu"
-msgstr ""
+msgstr "_Субсурет мәзірі"
 
 #: data/interfaces/parole.ui:238
 msgid "_Audio Menu"
@@ -342,7 +342,7 @@ msgstr "_Көмек"
 
 #: data/interfaces/parole.ui:567
 msgid "_Report a Bug..."
-msgstr ""
+msgstr "Қате туралы _хабарлау..."
 
 #: data/interfaces/parole.ui:575
 msgid "_Keyboard Shortcuts"
@@ -539,27 +539,27 @@ msgstr "Келесі трек"
 
 #: data/interfaces/shortcuts.ui:160
 msgid "Go back 10 seconds"
-msgstr ""
+msgstr "10 секундқа артқа қайту"
 
 #: data/interfaces/shortcuts.ui:167
 msgid "Go forward 10 seconds"
-msgstr ""
+msgstr "10 секундқа алға бару"
 
 #: data/interfaces/shortcuts.ui:174
 msgid "Go back 1 minute"
-msgstr ""
+msgstr "1 минутқа артқа қайту"
 
 #: data/interfaces/shortcuts.ui:181
 msgid "Go forward 1 minute"
-msgstr ""
+msgstr "1 минутқа алға бару"
 
 #: data/interfaces/shortcuts.ui:188
 msgid "Go back 10 minutes"
-msgstr ""
+msgstr "10 минутқа артқа қайту"
 
 #: data/interfaces/shortcuts.ui:195
 msgid "Go forward 10 minutes"
-msgstr ""
+msgstr "10 минутқа алға бару"
 
 #: data/desktop/org.xfce.Parole.desktop.in.in:4
 msgid "Play your media"
@@ -567,7 +567,7 @@ msgstr "Медиаңызды ойнату"
 
 #: data/desktop/org.xfce.Parole.desktop.in.in:11
 msgid "Media;Player;Audio;Video;Music;Playback;Xfce;"
-msgstr ""
+msgstr "Media;Player;Audio;Video;Music;Playback;Xfce;Медиа;Ойнатқыш;Аудио;Видео;Музыка;Ойнату;"
 
 #: data/desktop/org.xfce.Parole.desktop.in.in:23 src/parole-player.c:3369
 #: src/plugins/notify/notify-provider.c:178
@@ -585,7 +585,7 @@ msgstr "Parole"
 
 #: data/metainfo/parole.appdata.xml.in:8
 msgid "Modern and simple media player"
-msgstr ""
+msgstr "Заманауи және қарапайым медиа ойнатқыш"
 
 #: data/metainfo/parole.appdata.xml.in:12
 msgid ""
@@ -603,15 +603,15 @@ msgstr "Parole жергілікті медиа файлдарын, соның і
 
 #: data/metainfo/parole.appdata.xml.in:26
 msgid "Parole playing Big Buck Bunny"
-msgstr ""
+msgstr "Parole Big Buck Bunny-ді ойнатып жатыр"
 
 #: data/metainfo/parole.appdata.xml.in:30
 msgid "Parole playing a LAS podcast"
-msgstr ""
+msgstr "Parole LAS подкастын ойнатып жатыр"
 
 #: data/metainfo/parole.appdata.xml.in:34
 msgid "Parole playing a LAS podcast in Mini Mode (0.9+)"
-msgstr ""
+msgstr "Parole LAS подкастын шағын режимде ойнатып жатыр (0.9+)"
 
 #: src/common/parole-common.c:79
 msgid "Message"
@@ -632,11 +632,11 @@ msgstr "Аудио CD"
 
 #: src/gst/parole-gst.c:1267
 msgid "Unable to install missing codecs."
-msgstr ""
+msgstr "Жетіспейтін кодектерді орнату мүмкін емес."
 
 #: src/gst/parole-gst.c:1270
 msgid "No available plugin installer was found."
-msgstr ""
+msgstr "Қолжетімді плагин орнатушысы табылмады."
 
 #: src/gst/parole-gst.c:1321
 msgid "Additional software is required."
@@ -659,12 +659,12 @@ msgstr "ОК"
 msgid ""
 "Parole needs <b>%s</b> to play this file.\n"
 "It can be installed automatically."
-msgstr ""
+msgstr "Бұл файлды ойнату үшін Parole-ға <b>%s</b> қажет.\nОны автоматты түрде орнатуға болады."
 
 #: src/gst/parole-gst.c:1340
 #, c-format
 msgid "Parole needs <b>%s</b> to play this file."
-msgstr ""
+msgstr "Бұл файлды ойнату үшін Parole-ға <b>%s</b> қажет."
 
 #: src/gst/parole-gst.c:1721
 msgid "The stream is taking too much time to load"
@@ -672,7 +672,7 @@ msgstr "Ағымды жүктеу үшін тым көп уақыт керек"
 
 #: src/gst/parole-gst.c:1723
 msgid "Do you want to continue loading or stop?"
-msgstr ""
+msgstr "Жүктеуді жалғастыруды немесе тоқтатуды қалайсыз ба?"
 
 #: src/gst/parole-gst.c:1724
 msgid "Stop"
@@ -694,7 +694,7 @@ msgstr "Parole медиа ойнатқышы іске қосыла алмайд�
 #: src/gst/parole-gst.c:1991
 #, c-format
 msgid "Unable to load \"%s\" plugin, check your GStreamer installation."
-msgstr ""
+msgstr "\"%s\" плагинін жүктеу мүмкін емес, GStreamer орнатылымын тексеріңіз."
 
 #: src/gst/parole-gst.c:2558 src/gst/parole-gst.c:2562
 #, c-format
@@ -735,7 +735,7 @@ msgstr "Аудио CD/VCD/DVD құрылғы жолын орнатыңыз"
 
 #: src/main.c:237
 msgid "Start in embedded mode"
-msgstr ""
+msgstr "Ендірілген режимде іске қосу"
 
 #: src/main.c:239
 msgid "Start in fullscreen mode"
@@ -759,7 +759,7 @@ msgstr "Дыбысын басу"
 
 #: src/main.c:253
 msgid "Unmute (restore) volume"
-msgstr ""
+msgstr "Дыбысты шығару (қалпына келтіру)"
 
 #: src/main.c:255
 msgid "Add files to playlist"
@@ -775,12 +775,12 @@ msgstr "Ойнату үшін медиа"
 
 #: src/main.c:285
 msgid "[FILES...] - Play movies and songs"
-msgstr ""
+msgstr "[ФАЙЛДАР...] - Фильмдер мен әндерді ойнату"
 
 #: src/main.c:296
 #, c-format
 msgid "Type %s --help to list all available command line options\n"
-msgstr ""
+msgstr "Барлық қолжетімді командалық жол опцияларын тізіп шығу үшін %s --help теріңіз\n"
 
 #: src/main.c:313
 msgid "Parole is already running, use -i to open a new instance\n"
@@ -808,11 +808,11 @@ msgstr "Ойнату тізімдер файлдары"
 
 #: src/parole-about.c:70
 msgid "A modern simple media player for the Xfce Desktop Environment."
-msgstr ""
+msgstr "Xfce жұмыс үстелі ортасына арналған заманауи қарапайым медиа ойнатқыш."
 
 #: src/parole-about.c:76
 msgid "translator-credits"
-msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2013"
+msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
 
 #: src/parole-about.c:79
 msgid "Visit Parole website"
@@ -838,8 +838,8 @@ msgstr[1] "Ойнату тізімі (%i нәрсе)"
 #, c-format
 msgid "Playlist (%i chapter)"
 msgid_plural "Playlist (%i chapters)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ойнату тізімі (%i бөлім)"
+msgstr[1] "Ойнату тізімі (%i бөлім)"
 
 #: src/parole-medialist.c:419 src/parole-player.c:708
 #, c-format
@@ -860,7 +860,7 @@ msgstr "Ойнату тізімінің пішімі белгісіз"
 
 #: src/parole-medialist.c:692
 msgid "Please choose a supported playlist format"
-msgstr ""
+msgstr "Қолдауы бар ойнату тізімі пішімін таңдаңыз"
 
 #: src/parole-medialist.c:738 src/parole-plugins-manager.c:357
 msgid "Unknown"
@@ -888,12 +888,12 @@ msgstr "PLS ойнату тізімі (%s)"
 #: src/parole-medialist.c:873
 #, c-format
 msgid "Advanced Stream Redirector (%s)"
-msgstr ""
+msgstr "Жетілдірілген ағынды қайта бағыттаушы (%s)"
 
 #: src/parole-medialist.c:883
 #, c-format
 msgid "Shareable Playlist (%s)"
-msgstr ""
+msgstr "Бөлісуге болатын ойнату тізімі (%s)"
 
 #. Clear
 #: src/parole-medialist.c:1268
@@ -1015,12 +1015,12 @@ msgstr "Дыбысын қайтару"
 
 #: src/parole-player.c:2803
 msgid "Unable to open default web browser"
-msgstr ""
+msgstr "Әдепкі веб-барузерді ашу мүмкін емес"
 
 #: src/parole-player.c:2805
 msgid ""
 "Please go to https://docs.xfce.org/apps/parole/bugs to report your bug."
-msgstr ""
+msgstr "Қате туралы хабарлау үшін https://docs.xfce.org/apps/parole/bugs адресіне өтіңіз."
 
 #: src/parole-player.c:2833
 msgid "Go"
@@ -1029,7 +1029,7 @@ msgstr "Өту"
 #. Clear Recent Menu Item
 #: src/parole-player.c:3261
 msgid "_Clear recent items..."
-msgstr ""
+msgstr "_Жуырдағы элементтерді тазарту..."
 
 #: src/parole-player.c:3572
 msgid "Audio Track:"
@@ -1041,11 +1041,11 @@ msgstr "Субтитрлар:"
 
 #: src/parole-plugins-manager.c:282
 msgid "Plugin failed to load"
-msgstr ""
+msgstr "Плагин жүктелмеді"
 
 #: src/parole-plugins-manager.c:283
 msgid "Please check your installation"
-msgstr ""
+msgstr "Орнатуды тексеріңіз"
 
 #: src/parole-plugins-manager.c:394
 msgid "No installed plugins found on this system"
