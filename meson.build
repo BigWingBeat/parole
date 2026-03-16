@@ -177,6 +177,7 @@ extra_cflags += [
 add_project_arguments(cc.get_supported_arguments(extra_cflags_check), language: 'c')
 add_project_arguments(feature_cflags, language: 'c')
 add_project_arguments(extra_cflags, language: 'c')
+add_project_link_arguments('-lm', language : 'c')
 
 xfce_revision_h = vcs_tag(
   command: ['git', 'rev-parse', '--short', 'HEAD'],
