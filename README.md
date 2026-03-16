@@ -34,6 +34,25 @@ See [NEWS](https://gitlab.xfce.org/apps/parole/-/blob/master/NEWS) for details o
     or
 [Parole tags](https://gitlab.xfce.org/apps/parole/-/tags)
 
+### Required packages
+
+As described on [the website](https://docs.xfce.org/apps/parole/start#required_packages), Parole depends on the following packages:
+
+- GTK >=3.20.0
+- GLib >=2.32.0
+- Gio 2.32 or above.
+- D-Bus >=0.60
+- DBus glib 0.70 or above.
+- GStreamer: base, video, interface and GStreamer X, version 1.0.0 or above.
+- libxfce4ui 4.11.0 or above.
+- libxfce4util 4.10.0 or above.
+
+Additionally, Parole has an undocumented dependency on `gst-plugins-good`, for `autoaudiosink`.
+
+Optionally, some extra dependencies can be installed to enable playing certain codecs:
+
+- ogg vorbis/opus: `gst-plugins-base`
+
 ### Installation
 
 From source code repository: 
